@@ -1,0 +1,100 @@
+/*
+@media only screen and (min-width: 768px) {
+	#content {
+		margin-top: 40px !important;
+	}
+}
+*/
+
+/*
+@media only screen and (max-width: 750px) and (orientation: landscape) {
+  #content {
+    margin-top: 0 !important;
+	padding-bottom: 40px !important;
+  }
+}
+*/
+
+html, body  {
+	height: 100vh;
+}
+
+#content, .owl-stage-outer, .owl-item, .active, .owl-stage {
+	height: 100vh;
+}
+
+@media only screen and (max-device-width : 667px) and (orientation : landscape) {
+	#content {
+		margin-top: 0 !important;
+	}
+}
+
+@media only screen and (orientation: portrait) {
+  #content {
+    margin-top: 1em !important;
+  }
+}
+
+#containerbox {
+	height: 100vh;
+	overflow: hidden;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+body {
+	font-family: 'Arial';
+	font-weight: bold;
+	background-image: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("../images/comrades-back.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#header {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+h1 {
+	display: inline-block;
+	font-size: 5vw;
+	font-weight: 600;
+	text-shadow: 0 0 5px black;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+.headers {
+	text-align: center;
+}
+
+.slide {
+	margin-left: 0.5em;
+	height: 100vh;
+	font-size: 4vw;
+	color: 	#FFD700;
+	text-shadow: 0 0 4px #000;
+  	-moz-text-shadow: 0 0 4px #000;
+  	-webkit-text-shadow: 0 0 4px #000;
+	-webkit-font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+}
+
+.item {
+	flex-grow: 1;
+}
+
+.flex-cont {
+	height: calc(100vh - 180px);
+}
+
+#img1 {
+	margin-left: 1em;
+}
+
+#img2 {
+	margin-right: 1em;
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="0.8.0" last-position="0,0" last-zoom="1"
+	 default-schema="public" default-owner="postgres">
+<database name="new_database">
+</database>
+
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<table name="reg_pmb">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="109" y="103"/>
+	<column name="id">
+		<type name="smallint"/>
+	</column>
+</table>
+
+<table name="reg_dbn">
+	<schema name="public"/>
+	<role name="postgres"/>
+	<position x="114" y="224"/>
+	<column name="id">
+		<type name="smallint"/>
+	</column>
+</table>
+
+</dbmodel>
