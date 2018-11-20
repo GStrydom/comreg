@@ -170,7 +170,7 @@
 			];
 
 			function loadData() {
-			$.getJSON('http://allorigins.me/get?url=https%3A//secure.onreg.com/onreg2/users/reports_public.php%3Fid%3D3820%26list%3Dtrue%26type%3Dxml%26reportid%3D2012%26checksum%3Dfa2da859cd3505a8b279dbeb251b2dac%20%20%20&callback=?', function(data){
+			$.getJSON('https://allorigins.me/get?url=https%3A//secure.onreg.com/onreg2/users/reports_public.php%3Fid%3D3820%26list%3Dtrue%26type%3Dxml%26reportid%3D2012%26checksum%3Dfa2da859cd3505a8b279dbeb251b2dac%20%20%20&callback=?', function(data){
 					
 					var jsonObj = $.xml2json(data.contents);
 					var entTOTAL = jsonObj.xml.reportdata.record[16].RegistrationCount;
