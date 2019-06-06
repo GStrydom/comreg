@@ -22,6 +22,10 @@
     <script type="text/javascript" src="js/xml2json.js"></script>
 
     <script type="text/javascript">
+        var name = "greg";
+    </script>
+
+    <script type="text/javascript">
         /*
             Initialize the page with data.
         */
@@ -39,7 +43,7 @@
                 rewind: true,
                 items: 1,
                 autoplay: true,
-                autoplayTimeout: 8000,
+                autoplayTimeout: 16000,
                 speed: 300,
                 autoplayHoverPause: true,
                 dots: false,
@@ -125,48 +129,335 @@
 
     <script type="text/javascript">
         function loadDbnPmb() {
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2006&checksum=3526a1aeb30b86b85067d203908808df'), function (data) {
+            console.log(name);
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2005&checksum=67c4f8fe5f359933f448f378bb9f2f40'), function (data) {
+                var durbanTotal = 0;
+                var pmbTotal = 0;
 
+                var jsonObj = $.xml2json(data.contents);
+                if(jsonObj.xml.reportdata.record[0].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[0].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[0].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[0].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[1].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[1].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[1].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[1].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[2].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[2].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[2].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[2].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[3].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[3].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[3].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[3].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[4].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[4].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[4].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[4].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[5].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[5].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[5].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[5].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[6].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[6].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[6].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[6].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[7].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[7].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[7].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[7].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[8].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[8].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[8].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[8].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[9].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[9].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[9].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[9].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[10].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[10].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[10].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[10].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[11].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[11].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[11].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[11].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[12].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[12].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[12].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[12].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[13].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[13].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[13].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[13].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[14].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[14].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[14].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[14].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[15].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[15].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[15].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[15].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[16].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[16].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[16].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[16].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[17].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[17].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[17].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[17].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[18].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[18].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[18].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[18].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[19].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[19].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[19].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[19].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[20].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[20].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[20].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[20].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[21].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[21].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[21].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[21].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[22].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[22].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[22].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[22].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[23].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[23].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[23].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[23].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[24].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[24].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[24].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[24].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[25].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[25].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[25].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[25].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[26].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[26].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[26].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[26].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[27].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[27].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[27].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[27].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[28].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[28].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[28].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[28].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[29].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[29].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[29].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[29].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[30].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[30].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[31].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[31].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[31].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[31].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[32].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[32].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[32].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[32].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[33].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[33].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[33].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[33].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[34].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[34].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[34].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[34].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[35].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[35].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[35].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[35].RegistrationCount)
+                }
+                if(jsonObj.xml.reportdata.record[36].CheckInTerminal.startsWith('DBN')) {
+                    durbanTotal += Number(jsonObj.xml.reportdata.record[36].RegistrationCount);
+                } else if(jsonObj.xml.reportdata.record[36].CheckInTerminal.startsWith('PMB')){
+                    pmbTotal += Number(jsonObj.xml.reportdata.record[36].RegistrationCount)
+                }
+
+                var regTOTAL = durbanTotal + pmbTotal;
+
+                $('#durban-registered').html(durbanTotal);
+                $('#pmb-registered').html(pmbTotal);
+                $('#total-registered').html(regTOTAL);
             });
         }
     </script>
 
     <script type="text/javascript">
         function loadSaRoaInt() {
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2006&checksum=3526a1aeb30b86b85067d203908808df'), function (data) {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2006&checksum=3526a1aeb30b86b85067d203908808df'), function (data) {
                 var jsonObj = $.xml2json(data.contents);
-                var entTOTAL = jsonObj.xml.reportdata.record[3].computed;
+                var regTOTAL = jsonObj.xml.reportdata.record[3].computed;
                 var saTotal = jsonObj.xml.reportdata.record[0].computed;
                 var roaTotal = jsonObj.xml.reportdata.record[1].computed;
                 var intTotal = jsonObj.xml.reportdata.record[2].computed;
 
-                var totalRegistered = '';
-                var saPercent = ((Number(totalRegistered) / Number(entTOTAL)) * 100).toFixed(0);
-                valuePercent = "(" + String(valuePercent) + "%)";
-
                 $('#regsacount').html(saTotal);
-                $('#regsapercent').html(saPercent);
                 $('#regroacount').html(roaTotal);
-                $('#regroapercent').html(roaPercent);
                 $('#regintcount').html(intTotal);
-                $('#regintpercent').html(intPercent);
-                $('#regsaroainttotalcount').html(entTOTAL);
-                $('#regsaroainttotalpercent').html(saroaintPercent);
+                $('#regsaroainttotalcount').html(regTOTAL);
+
+                $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=32&checksum=f6d766960f0dd698930e0304f1da41eb'), function (data) {
+                    var jsonObj = $.xml2json(data.contents);
+                    var saEntTotal = jsonObj.xml.reportdata.record[0].Total;
+                    var intTotal = Number(jsonObj.xml.reportdata.record[1].Total) +
+                            Number(jsonObj.xml.reportdata.record[2].Total) +
+                            Number(jsonObj.xml.reportdata.record[4].Total) +
+                            Number(jsonObj.xml.reportdata.record[5].Total) +
+                            Number(jsonObj.xml.reportdata.record[6].Total) +
+                            Number(jsonObj.xml.reportdata.record[9].Total) +
+                            Number(jsonObj.xml.reportdata.record[10].Total) +
+                            Number(jsonObj.xml.reportdata.record[13].Total) +
+                            Number(jsonObj.xml.reportdata.record[15].Total) +
+                            Number(jsonObj.xml.reportdata.record[16].Total) +
+                            Number(jsonObj.xml.reportdata.record[17].Total) +
+                            Number(jsonObj.xml.reportdata.record[18].Total) +
+                            Number(jsonObj.xml.reportdata.record[19].Total) +
+                            Number(jsonObj.xml.reportdata.record[20].Total) +
+                            Number(jsonObj.xml.reportdata.record[22].Total) +
+                            Number(jsonObj.xml.reportdata.record[23].Total) +
+                            Number(jsonObj.xml.reportdata.record[26].Total) +
+                            Number(jsonObj.xml.reportdata.record[27].Total) +
+                            Number(jsonObj.xml.reportdata.record[28].Total) +
+                            Number(jsonObj.xml.reportdata.record[29].Total) +
+                            Number(jsonObj.xml.reportdata.record[30].Total) +
+                            Number(jsonObj.xml.reportdata.record[31].Total) +
+                            Number(jsonObj.xml.reportdata.record[32].Total) +
+                            Number(jsonObj.xml.reportdata.record[33].Total) +
+                            Number(jsonObj.xml.reportdata.record[34].Total) +
+                            Number(jsonObj.xml.reportdata.record[35].Total) +
+                            Number(jsonObj.xml.reportdata.record[36].Total) +
+                            Number(jsonObj.xml.reportdata.record[37].Total) +
+                            Number(jsonObj.xml.reportdata.record[38].Total) +
+                            Number(jsonObj.xml.reportdata.record[42].Total) +
+                            Number(jsonObj.xml.reportdata.record[44].Total) +
+                            Number(jsonObj.xml.reportdata.record[45].Total) +
+                            Number(jsonObj.xml.reportdata.record[50].Total) +
+                            Number(jsonObj.xml.reportdata.record[51].Total) +
+                            Number(jsonObj.xml.reportdata.record[52].Total) +
+                            Number(jsonObj.xml.reportdata.record[53].Total) +
+                            Number(jsonObj.xml.reportdata.record[54].Total) +
+                            Number(jsonObj.xml.reportdata.record[55].Total) +
+                            Number(jsonObj.xml.reportdata.record[56].Total) +
+                            Number(jsonObj.xml.reportdata.record[57].Total) +
+                            Number(jsonObj.xml.reportdata.record[58].Total) +
+                            Number(jsonObj.xml.reportdata.record[59].Total) +
+                            Number(jsonObj.xml.reportdata.record[60].Total) +
+                            Number(jsonObj.xml.reportdata.record[61].Total) +
+                            Number(jsonObj.xml.reportdata.record[62].Total) +
+                            Number(jsonObj.xml.reportdata.record[63].Total) +
+                            Number(jsonObj.xml.reportdata.record[64].Total) +
+                            Number(jsonObj.xml.reportdata.record[65].Total) +
+                            Number(jsonObj.xml.reportdata.record[66].Total) +
+                            Number(jsonObj.xml.reportdata.record[67].Total) +
+                            Number(jsonObj.xml.reportdata.record[68].Total) +
+                            Number(jsonObj.xml.reportdata.record[69].Total) +
+                            Number(jsonObj.xml.reportdata.record[70].Total) +
+                            Number(jsonObj.xml.reportdata.record[71].Total) +
+                            Number(jsonObj.xml.reportdata.record[72].Total) +
+                            Number(jsonObj.xml.reportdata.record[73].Total) +
+                            Number(jsonObj.xml.reportdata.record[78].Total) +
+                            Number(jsonObj.xml.reportdata.record[79].Total) +
+                            Number(jsonObj.xml.reportdata.record[80].Total) +
+                            Number(jsonObj.xml.reportdata.record[81].Total) +
+                            Number(jsonObj.xml.reportdata.record[82].Total) +
+                            Number(jsonObj.xml.reportdata.record[83].Total);
+
+                    var roaTotal = Number(jsonObj.xml.reportdata.record[3].Total) +
+                            Number(jsonObj.xml.reportdata.record[7].Total) +
+                            Number(jsonObj.xml.reportdata.record[8].Total) +
+                            Number(jsonObj.xml.reportdata.record[11].Total) +
+                            Number(jsonObj.xml.reportdata.record[12].Total) +
+                            Number(jsonObj.xml.reportdata.record[14].Total) +
+                            Number(jsonObj.xml.reportdata.record[21].Total) +
+                            Number(jsonObj.xml.reportdata.record[24].Total) +
+                            Number(jsonObj.xml.reportdata.record[40].Total) +
+                            Number(jsonObj.xml.reportdata.record[46].Total) +
+                            Number(jsonObj.xml.reportdata.record[47].Total) +
+                            Number(jsonObj.xml.reportdata.record[48].Total) +
+                            Number(jsonObj.xml.reportdata.record[49].Total) +
+                            Number(jsonObj.xml.reportdata.record[76].Total) +
+                            Number(jsonObj.xml.reportdata.record[77].Total)
             });
         }
     </script>
 
     <script type="text/javascript">
         function loadMaleFemale() {
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2007&checksum=358936464c8c8e9672756e8a79804b6b'), function (data) {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2007&checksum=358936464c8c8e9672756e8a79804b6b'), function (data) {
                 var jsonObj = $.xml2json(data.contents);
-                var entTOTAL = jsonObj.xml.reportdata.record[2].computed;
+                var regTOTAL = jsonObj.xml.reportdata.record[2].computed;
                 var maleTotal = jsonObj.xml.reportdata.record[0].computed;
                 var femaleTotal = jsonObj.xml.reportdata.record[1].computed;
 
                 $('#regmalecount').html(maleTotal);
                 $('#regfemalecount').html(femaleTotal);
-                $('#regmfcount').html(entTOTAL);
+                $('#regmftotalcount').html(regTOTAL);
+
+                $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2010&checksum=ebe1b57fb9a2f6f56e0919488dad9365'), function (data) {
+                    var jsonObj = $.xml2json(data.contents);
+
+                    var entMaleTotal = jsonObj.xml.reportdata.record[0].computed;
+                    var entFemaleTotal = jsonObj.xml.reportdata.record[1].computed;
+                    var genderTotal = jsonObj.xml.reportdata.record[2].computed;
+
+                    var regMalePercent = ((Number(maleTotal) / Number(entMaleTotal)) * 100).toFixed(0);
+                    regMalePercent = "(" + String(regMalePercent) + "%)";
+                    $('#regmalepercent').html(regMalePercent);
+                    var regFemalePercent = ((Number(femaleTotal) / Number(entFemaleTotal)) * 100).toFixed(0);
+                    regFemalePercent = "(" + String(regFemalePercent) + "%)";
+                    $('#regfemalepercent').html(regFemalePercent);
+                    var genderPercent = ((Number(regTOTAL) / Number(genderTotal)) * 100).toFixed(0);
+                    genderPercent = "(" + String(genderPercent) + "%)";
+                    $('#regmftotalpercent').html(genderPercent);
+                });
             });
         }
     </script>
