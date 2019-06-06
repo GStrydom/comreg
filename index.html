@@ -1,397 +1,285 @@
 <!DOCTYPE html>
 <html lang='en'>
-	<head>
-		<meta charset="utf-8">
-		<title>Registration Count</title>
+<head>
+    <meta charset="utf-8">
+    <title>Registration Count</title>
 
-		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
-		
-		<script src="js/jquery-3.3.1.js"></script>
-		
-		<link rel="stylesheet" href="css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
 
-		<script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.3.1.js"></script>
 
-		<link rel="stylesheet" href="dist/assets/owl.carousel.min.css">
-		<link rel="stylesheet" href="dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 
-		<script src="dist/owl.carousel.min.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="css/styles_main.css">
+    <script src="js/bootstrap.min.js"></script>
 
-		<script type="text/javascript" src="js/xml2json.js"></script>
+    <link rel="stylesheet" href="dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="dist/assets/owl.theme.default.min.css">
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				getTheDate();
-				loadData();
-			})
-		</script>
+    <script src="dist/owl.carousel.min.js"></script>
 
-		<script type="text/javascript">
-			var owl;
-			$(document).ready(function() {
-				owl = $(".owl-carousel").owlCarousel({
-					loop: false,
-					rewind: true,
-					items: 1,
-					autoplay: true,
-					autoplayTimeout: 8000,
-					speed: 300,
-					autoplayHoverPause: true,
-					dots: false,
-					margin: 30,
-					responsive:{
-        				0:{
-            				items:1
-        				},
-        				600:{
-            				items:1
-        				},
-        				1000:{
-            				items:1
-        				}
-    				}
-				});
-				owl.on('changed.owl.carousel', function(event) {
-					getTheDate();
-					if (event.item.index == 4) {
-						loadData();
-					}
-				})
-			})
-		</script>
+    <link rel="stylesheet" type="text/css" href="css/styles_main.css">
 
-		<script type="text/javascript">
-			function getTheDate() {
-			    var month, date, day, hour, min;
-			    var raw_date = new Date();
-			    date = raw_date.getDate();
-			    date = String(date);
-			    if (date.length == 1) {
-			        date = "0" + date;
-			    }
-			    var r_month = raw_date.getMonth();
-			    if (r_month == 0) {
-			        month = 'JAN';
-			    } else if (r_month == 1) {
-			        month = 'FEB';
-			    } else if (r_month == 2) {
-			        month = 'MAR';
-			    } else if (r_month == 3) {
-			        month = 'APR';
-			    } else if (r_month == 4) {
-			        month = 'MAY';
-			    } else if (r_month == 5) {
-			        month = 'JUN';
-			    } else if (r_month == 6) {
-			        month = 'JUL';
-			    } else if (r_month == 7) {
-			        month = 'AUG';
-			    } else if (r_month == 8) {
-			        month = 'SEP';
-			    } else if (r_month == 9) {
-			        month = 'OCT';
-			    } else if (r_month == 10) {
-			        month = 'NOV';
-			    } else if (r_month == 11) {
-			        month = 'DEC';
-			    }
-			    hour = raw_date.getHours();
-			    hour = String(hour);
-			    if(hour.length == 1) {
-			        hour = "0" + hour;
-			    }
-			    min = raw_date.getMinutes();
-			    min = String(min);
-			    if(min.length == 1) {
-			        min = "0" + min;
-			    }
-			    var totDate = date + " " + month + " "+ hour + ":" + min;
-			    $('.dateSec').html(totDate);
-			}
-		</script>
+    <script type="text/javascript" src="xml2json.js"></script>
 
-		<script type="text/javascript">
-			// HTML tags to place the stats data in.
-			var slideHTMLTags = [
-				'#durban-registered',
-				'#pmb-registered',
-				'#total-registered',
-				'#regdbnhour',
-				'#regpmbhour',
-				'#regdbnpmbhour',
-				'#regsacount',
-				'#regroacount',
-				'#regintcount',
-				'#regsaroainttotalcount',
-				'#regmalecount',
-				'#regfemalecount',
-				'#regmftotalcount',
-				'#entsacount',
-				'#entroacount',
-				'#entintcount',
-				'#entsaroainttotal',
-				'#entmalecount',
-				'#entfemalecount',
-				'#entmftotalcount',
-				'#entgreennumber',
-				'#entnovice',
-				'#entother',
-				'#entgreennumbertotal'
-			];
+    <script type="text/javascript">
+        $(document).ready(function() {
+            getTheDate();
+            loadData();
+        })
+    </script>
 
-			// HTML tags to place percentages in.
-			var slidePercentTags = [
-				'#regdbnpercent',
-				'#regpmbpercent',
-				'#regdbnpmbtotalpercent',
-				'#regdbnhourpercent',
-				'#regpmbhourpercent',
-				'#regdbnpmbhourpercent',
-				'#regsapercent',
-				'#regroapercent',
-				'#regintpercent',
-				'#regsaroainttotalpercent',
-				'#regmalepercent',
-				'#regfemalepercent',
-				'#regmftotalpercent',
-				'#entsapercent',
-				'#entroapercent',
-				'#entintpercent',
-				'#entsaroainttotalpercent',
-				'#entmalepercent',
-				'#entfemalepercent',
-				'#entmftotalpercent',
-				'#entgreenpercent',
-				'#entnovicepercent',
-				'#entotherpercent',
-				'#entgreentotalpercent'
-			];
+    <script type="text/javascript">
+        var owl;
+        $(document).ready(function() {
+            owl = $(".owl-carousel").owlCarousel({
+                loop: false,
+                rewind: true,
+                items: 1,
+                autoplay: true,
+                autoplayTimeout: 8000,
+                speed: 300,
+                autoplayHoverPause: true,
+                dots: false,
+                margin: 30,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:1
+                    },
+                    1000:{
+                        items:1
+                    }
+                }
+            });
+            owl.on('changed.owl.carousel', function(event) {
+                getTheDate();
+                setTimeout(loadData, 1000);
+            })
+        })
+    </script>
 
-			function loadData() {
-			$.getJSON('https://allorigins.me/get?url=https%3A//secure.onreg.com/onreg2/users/reports_public.php%3Fid%3D3820%26list%3Dtrue%26type%3Dxml%26reportid%3D2012%26checksum%3Dfa2da859cd3505a8b279dbeb251b2dac%20%20%20&callback=?', function(data){
-					
-					var jsonObj = $.xml2json(data.contents);
-					var entTOTAL = jsonObj.xml.reportdata.record[16].RegistrationCount;
+    <script type="text/javascript">
+        function getTheDate() {
+            var month, date, day, hour, min;
+            var raw_date = new Date();
+            date = raw_date.getDate();
+            date = String(date);
+            if (date.length == 1) {
+                date = "0" + date;
+            }
+            var r_month = raw_date.getMonth();
+            if (r_month == 0) {
+                month = 'JAN';
+            } else if (r_month == 1) {
+                month = 'FEB';
+            } else if (r_month == 2) {
+                month = 'MAR';
+            } else if (r_month == 3) {
+                month = 'APR';
+            } else if (r_month == 4) {
+                month = 'MAY';
+            } else if (r_month == 5) {
+                month = 'JUN';
+            } else if (r_month == 6) {
+                month = 'JUL';
+            } else if (r_month == 7) {
+                month = 'AUG';
+            } else if (r_month == 8) {
+                month = 'SEP';
+            } else if (r_month == 9) {
+                month = 'OCT';
+            } else if (r_month == 10) {
+                month = 'NOV';
+            } else if (r_month == 11) {
+                month = 'DEC';
+            }
+            hour = raw_date.getHours();
+            hour = String(hour);
+            if(hour.length == 1) {
+                hour = "0" + hour;
+            }
+            min = raw_date.getMinutes();
+            min = String(min);
+            if(min.length == 1) {
+                min = "0" + min;
+            }
+            var totDate = date + " " + month + " "+ hour + ":" + min;
+            $('.dateSec').html(totDate);
+        }
+    </script>
 
-					// The stats to be displayed on each slide.
-					var slideDataValues = [
-						jsonObj.xml.reportdata.record[0].RegistrationCount,
-						jsonObj.xml.reportdata.record[1].RegistrationCount,
-						jsonObj.xml.reportdata.record[2].RegistrationCount,
-						jsonObj.xml.reportdata.record[10].RegistrationCount,
-						jsonObj.xml.reportdata.record[11].RegistrationCount,
-						jsonObj.xml.reportdata.record[12].RegistrationCount,
-						jsonObj.xml.reportdata.record[3].RegistrationCount,
-						jsonObj.xml.reportdata.record[4].RegistrationCount, 
-						jsonObj.xml.reportdata.record[5].RegistrationCount,
-						jsonObj.xml.reportdata.record[6].RegistrationCount,
-						jsonObj.xml.reportdata.record[7].RegistrationCount,
-						jsonObj.xml.reportdata.record[8].RegistrationCount,
-						jsonObj.xml.reportdata.record[9].RegistrationCount,
-						jsonObj.xml.reportdata.record[13].RegistrationCount,
-						jsonObj.xml.reportdata.record[14].RegistrationCount,
-						jsonObj.xml.reportdata.record[15].RegistrationCount,
-						jsonObj.xml.reportdata.record[16].RegistrationCount,
-						jsonObj.xml.reportdata.record[17].RegistrationCount,
-						jsonObj.xml.reportdata.record[18].RegistrationCount,
-						jsonObj.xml.reportdata.record[19].RegistrationCount,
-						jsonObj.xml.reportdata.record[20].RegistrationCount,
-						jsonObj.xml.reportdata.record[21].RegistrationCount,
-						jsonObj.xml.reportdata.record[22].RegistrationCount,
-						jsonObj.xml.reportdata.record[23].RegistrationCount
-					];
+    <script type="text/javascript">
+        // HTML tags to place the stats data in.
+        var slideHTMLTags = [
+            '#durban-registered',
+            '#pmb-registered',
+            '#total-registered',
+            '#regdbnhour',
+            '#regpmbhour',
+            '#regdbnpmbhour',
+            '#regsacount',
+            '#regroacount',
+            '#regintcount',
+            '#regsaroainttotalcount',
+            '#regmalecount',
+            '#regfemalecount',
+            '#regmftotalcount',
+            '#entsacount',
+            '#entroacount',
+            '#entintcount',
+            '#entsaroainttotal',
+            '#entmalecount',
+            '#entfemalecount',
+            '#entmftotalcount',
+            '#entgreennumber',
+            '#entnovice',
+            '#entother',
+            '#entgreennumbertotal'
+        ];
 
-					for (var i=0; i<24; i++) {
-						$(slideHTMLTags[i]).html(slideDataValues[i]);
-						var valuePercent = ((Number(slideDataValues[i]) / Number(entTOTAL)) * 100).toFixed(0);
-						valuePercent = "(" + String(valuePercent) + "%)";
-						$(slidePercentTags[i]).html(valuePercent);
-					}
-				});
-			}
-		</script>
-	</head>
+        // HTML tags to place percentages in.
+        var slidePercentTags = [
+            '#regdbnpercent',
+            '#regpmbpercent',
+            '#regdbnpmbtotalpercent',
+            '#regdbnhourpercent',
+            '#regpmbhourpercent',
+            '#regdbnpmbhourpercent',
+            '#regsapercent',
+            '#regroapercent',
+            '#regintpercent',
+            '#regsaroainttotalpercent',
+            '#regmalepercent',
+            '#regfemalepercent',
+            '#regmftotalpercent',
+            '#entsapercent',
+            '#entroapercent',
+            '#entintpercent',
+            '#entsaroainttotalpercent',
+            '#entmalepercent',
+            '#entfemalepercent',
+            '#entmftotalpercent',
+            '#entgreenpercent',
+            '#entnovicepercent',
+            '#entotherpercent',
+            '#entgreentotalpercent'
+        ];
 
-	<body>
-		<div class="container-fluid" id="containerbox">
-			<div class="row" id="header">
-				<div class="col"><img class="img-fluid" src="images/ChampionChipLogo-white.png" width="350" height="350" id="img1"></div>
-				<div class="col"><img class=" img-fluid float-right" src="images/asijiki-logo3.png" width="300" height="180" id="img2"></div>
-			</div>
-			<div class="row mt-2" id="content">
-				<div class="col owl-carousel">
-					<div class="slide">
-						<div class="headers">
-							<h1>REGISTERED AS AT <span class="dateSec"></span></h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col"><p>Durban</p></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="durban-registered"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col"><p>Pietermaritzburg</p></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="pmb-registered"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regpmbpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col"><p>Total</p></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="total-registered"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnpmbtotalpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>REGISTERED LAST HOUR</h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Durban</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regdbnhour"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnhourpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Pietermaritzburg</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regpmbhour"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regpmbhourpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regdbnpmbhour"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnpmbhourpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>REGISTERED AS AT <span class="dateSec"></span></h1></div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">South Africa</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regsacount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regsapercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Rest of Africa</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regroacount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regroapercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-lg-8 col-md-8 col-sm-8 col">International</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regintcount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regintpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regsaroainttotalcount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regsaroainttotalpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>REGISTERED AS AT <span class="dateSec"></span></h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Male</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regmalecount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regmalepercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Female</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regfemalecount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regfemalepercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regmftotalcount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="regmftotalpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>ENTERED</h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">South Africa</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entsacount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entsapercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Rest of Africa</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entroacount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entroapercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">International</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entintcount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entintpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entsaroainttotal"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entsaroainttotalpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>ENTERED</h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Male</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entmalecount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entmalepercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Female</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entfemalecount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entfemalepercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entmftotalcount"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entmftotalpercent"></div>
-							</div>
-						</div>
-					</div>
-					<div class="slide">
-						<div class="headers">
-							<h1>ENTERED</h1>
-						</div>
-						<div class="d-flex flex-column flex-cont">
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Green Number</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entgreennumber"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entgreenpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Novice</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entnovice"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entnovicepercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Other</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entother"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entotherpercent"></div>
-							</div>
-							<div class="row item">
-								<div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="entgreennumbertotal"></div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col" id="entgreentotalpercent"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</body>
+        function loadData() {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2012&checksum=fa2da859cd3505a8b279dbeb251b2dac'), function (data) {
+                var jsonObj = $.xml2json(data.contents);
+                var entTOTAL = jsonObj.xml.reportdata.record[16].RegistrationCount;
+
+                // The stats to be displayed on each slide.
+                var slideDataValues = [
+                    jsonObj.xml.reportdata.record[0].RegistrationCount,
+                    jsonObj.xml.reportdata.record[1].RegistrationCount,
+                    jsonObj.xml.reportdata.record[2].RegistrationCount,
+                    jsonObj.xml.reportdata.record[10].RegistrationCount,
+                    jsonObj.xml.reportdata.record[11].RegistrationCount,
+                    jsonObj.xml.reportdata.record[12].RegistrationCount,
+                    jsonObj.xml.reportdata.record[3].RegistrationCount,
+                    jsonObj.xml.reportdata.record[4].RegistrationCount,
+                    jsonObj.xml.reportdata.record[5].RegistrationCount,
+                    jsonObj.xml.reportdata.record[6].RegistrationCount,
+                    jsonObj.xml.reportdata.record[7].RegistrationCount,
+                    jsonObj.xml.reportdata.record[8].RegistrationCount,
+                    jsonObj.xml.reportdata.record[9].RegistrationCount
+                ];
+
+                for (var i=0; i<23; i++) {
+                    $(slideHTMLTags[i]).html(slideDataValues[i]);
+                    var valuePercent = ((Number(slideDataValues[i]) / Number(entTOTAL)) * 100).toFixed(0);
+                    valuePercent = "(" + String(valuePercent) + "%)";
+                    $(slidePercentTags[i]).html(valuePercent);
+                }
+            });
+        }
+    </script>
+</head>
+
+<body>
+<div class="container-fluid" id="containerbox">
+    <div class="row" id="header">
+        <div class="col"><img class="img-fluid" src="images/championchiplogo-white.png" width="350" height="350" id="img1"></div>
+        <div class="col"><img class=" img-fluid float-right" src="images/sizonqoba-logo.png" id="img2"></div>
+    </div>
+    <div class="row mt-2" id="content">
+        <div class="col owl-carousel">
+            <div class="slide">
+                <div class="headers">
+                    <h1>REGISTERED AS AT <span class="dateSec"></span></h1>
+                </div>
+                <div class="d-flex flex-column flex-cont">
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col"><p>Durban</p></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="durban-registered"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnpercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col"><p>Pietermaritzburg</p></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="pmb-registered"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regpmbpercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col"><p>Total</p></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="total-registered"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regdbnpmbtotalpercent"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="headers">
+                    <h1>REGISTERED AS AT <span class="dateSec"></span></h1></div>
+                <div class="d-flex flex-column flex-cont">
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">South Africa</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regsacount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regsapercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">Rest of Africa</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regroacount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regroapercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-lg-8 col-md-8 col-sm-8 col">International</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regintcount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regintpercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regsaroainttotalcount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regsaroainttotalpercent"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="headers">
+                    <h1>REGISTERED AS AT <span class="dateSec"></span></h1>
+                </div>
+                <div class="d-flex flex-column flex-cont">
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">Male</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regmalecount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regmalepercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">Female</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regfemalecount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regfemalepercent"></div>
+                    </div>
+                    <div class="row item">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col">Total</div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col text-right" id="regmftotalcount"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col" id="regmftotalpercent"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
 </html>
