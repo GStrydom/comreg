@@ -19,12 +19,15 @@
 
     <link rel="stylesheet" type="text/css" href="css/styles_main.css">
 
-    <script type="text/javascript" src="xml2json.js"></script>
+    <script type="text/javascript" src="js/xml2json.js"></script>
 
     <script type="text/javascript">
+        /*
+            Initialize the page with data.
+        */
         $(document).ready(function() {
             getTheDate();
-            loadData();
+            loadDbnPmb();
         })
     </script>
 
@@ -55,14 +58,24 @@
             });
             owl.on('changed.owl.carousel', function(event) {
                 getTheDate();
-                setTimeout(loadData, 1000);
+                switch (event.item.index) {
+                    case 0:
+                        loadDbnPmb();
+                        break;
+                    case  1:
+                        loadSaRoaInt();
+                        break;
+                    case 2:
+                        loadMaleFemale();
+                        break;
+                }
             })
         })
     </script>
 
     <script type="text/javascript">
         function getTheDate() {
-            var month, date, day, hour, min;
+            var month, date, hour, min;
             var raw_date = new Date();
             date = raw_date.getDate();
             date = String(date);
@@ -111,93 +124,53 @@
     </script>
 
     <script type="text/javascript">
-        // HTML tags to place the stats data in.
-        var slideHTMLTags = [
-            '#durban-registered',
-            '#pmb-registered',
-            '#total-registered',
-            '#regdbnhour',
-            '#regpmbhour',
-            '#regdbnpmbhour',
-            '#regsacount',
-            '#regroacount',
-            '#regintcount',
-            '#regsaroainttotalcount',
-            '#regmalecount',
-            '#regfemalecount',
-            '#regmftotalcount',
-            '#entsacount',
-            '#entroacount',
-            '#entintcount',
-            '#entsaroainttotal',
-            '#entmalecount',
-            '#entfemalecount',
-            '#entmftotalcount',
-            '#entgreennumber',
-            '#entnovice',
-            '#entother',
-            '#entgreennumbertotal'
-        ];
+        function loadDbnPmb() {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2006&checksum=3526a1aeb30b86b85067d203908808df'), function (data) {
 
-        // HTML tags to place percentages in.
-        var slidePercentTags = [
-            '#regdbnpercent',
-            '#regpmbpercent',
-            '#regdbnpmbtotalpercent',
-            '#regdbnhourpercent',
-            '#regpmbhourpercent',
-            '#regdbnpmbhourpercent',
-            '#regsapercent',
-            '#regroapercent',
-            '#regintpercent',
-            '#regsaroainttotalpercent',
-            '#regmalepercent',
-            '#regfemalepercent',
-            '#regmftotalpercent',
-            '#entsapercent',
-            '#entroapercent',
-            '#entintpercent',
-            '#entsaroainttotalpercent',
-            '#entmalepercent',
-            '#entfemalepercent',
-            '#entmftotalpercent',
-            '#entgreenpercent',
-            '#entnovicepercent',
-            '#entotherpercent',
-            '#entgreentotalpercent'
-        ];
-
-        function loadData() {
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2012&checksum=fa2da859cd3505a8b279dbeb251b2dac'), function (data) {
-                var jsonObj = $.xml2json(data.contents);
-                var entTOTAL = jsonObj.xml.reportdata.record[16].RegistrationCount;
-
-                // The stats to be displayed on each slide.
-                var slideDataValues = [
-                    jsonObj.xml.reportdata.record[0].RegistrationCount,
-                    jsonObj.xml.reportdata.record[1].RegistrationCount,
-                    jsonObj.xml.reportdata.record[2].RegistrationCount,
-                    jsonObj.xml.reportdata.record[10].RegistrationCount,
-                    jsonObj.xml.reportdata.record[11].RegistrationCount,
-                    jsonObj.xml.reportdata.record[12].RegistrationCount,
-                    jsonObj.xml.reportdata.record[3].RegistrationCount,
-                    jsonObj.xml.reportdata.record[4].RegistrationCount,
-                    jsonObj.xml.reportdata.record[5].RegistrationCount,
-                    jsonObj.xml.reportdata.record[6].RegistrationCount,
-                    jsonObj.xml.reportdata.record[7].RegistrationCount,
-                    jsonObj.xml.reportdata.record[8].RegistrationCount,
-                    jsonObj.xml.reportdata.record[9].RegistrationCount
-                ];
-
-                for (var i=0; i<23; i++) {
-                    $(slideHTMLTags[i]).html(slideDataValues[i]);
-                    var valuePercent = ((Number(slideDataValues[i]) / Number(entTOTAL)) * 100).toFixed(0);
-                    valuePercent = "(" + String(valuePercent) + "%)";
-                    $(slidePercentTags[i]).html(valuePercent);
-                }
             });
         }
     </script>
+
+    <script type="text/javascript">
+        function loadSaRoaInt() {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2006&checksum=3526a1aeb30b86b85067d203908808df'), function (data) {
+                var jsonObj = $.xml2json(data.contents);
+                var entTOTAL = jsonObj.xml.reportdata.record[3].computed;
+                var saTotal = jsonObj.xml.reportdata.record[0].computed;
+                var roaTotal = jsonObj.xml.reportdata.record[1].computed;
+                var intTotal = jsonObj.xml.reportdata.record[2].computed;
+
+                var totalRegistered = '';
+                var saPercent = ((Number(totalRegistered) / Number(entTOTAL)) * 100).toFixed(0);
+                valuePercent = "(" + String(valuePercent) + "%)";
+
+                $('#regsacount').html(saTotal);
+                $('#regsapercent').html(saPercent);
+                $('#regroacount').html(roaTotal);
+                $('#regroapercent').html(roaPercent);
+                $('#regintcount').html(intTotal);
+                $('#regintpercent').html(intPercent);
+                $('#regsaroainttotalcount').html(entTOTAL);
+                $('#regsaroainttotalpercent').html(saroaintPercent);
+            });
+        }
+    </script>
+
+    <script type="text/javascript">
+        function loadMaleFemale() {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=3820&list=true&type=xml&reportid=2007&checksum=358936464c8c8e9672756e8a79804b6b'), function (data) {
+                var jsonObj = $.xml2json(data.contents);
+                var entTOTAL = jsonObj.xml.reportdata.record[2].computed;
+                var maleTotal = jsonObj.xml.reportdata.record[0].computed;
+                var femaleTotal = jsonObj.xml.reportdata.record[1].computed;
+
+                $('#regmalecount').html(maleTotal);
+                $('#regfemalecount').html(femaleTotal);
+                $('#regmfcount').html(entTOTAL);
+            });
+        }
+    </script>
+
 </head>
 
 <body>
