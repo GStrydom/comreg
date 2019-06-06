@@ -326,6 +326,16 @@
                 $('#durban-registered').html(durbanTotal);
                 $('#pmb-registered').html(pmbTotal);
                 $('#total-registered').html(regTOTAL);
+
+                $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2010&checksum=ebe1b57fb9a2f6f56e0919488dad9365'), function (data) {
+                    var jsonObj = $.xml2json(data.contents);
+
+                    var entDbnTotal = jsonObj.xml.reportdata.record[0].computed;
+                    var entPmbTotal = jsonObj.xml.reportdata.record[1].computed;
+                    var entriesTotal = jsonObj.xml.reportdata.record[2].computed;
+
+
+                });
             });
         }
     </script>
@@ -347,7 +357,7 @@
                 $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=32&checksum=f6d766960f0dd698930e0304f1da41eb'), function (data) {
                     var jsonObj = $.xml2json(data.contents);
                     var saEntTotal = jsonObj.xml.reportdata.record[0].Total;
-                    var intTotal = Number(jsonObj.xml.reportdata.record[1].Total) +
+                    var intEntTotal = Number(jsonObj.xml.reportdata.record[1].Total) +
                             Number(jsonObj.xml.reportdata.record[2].Total) +
                             Number(jsonObj.xml.reportdata.record[4].Total) +
                             Number(jsonObj.xml.reportdata.record[5].Total) +
@@ -410,7 +420,7 @@
                             Number(jsonObj.xml.reportdata.record[82].Total) +
                             Number(jsonObj.xml.reportdata.record[83].Total);
 
-                    var roaTotal = Number(jsonObj.xml.reportdata.record[3].Total) +
+                    var roaEntTotal = Number(jsonObj.xml.reportdata.record[3].Total) +
                             Number(jsonObj.xml.reportdata.record[7].Total) +
                             Number(jsonObj.xml.reportdata.record[8].Total) +
                             Number(jsonObj.xml.reportdata.record[11].Total) +
@@ -424,12 +434,29 @@
                             Number(jsonObj.xml.reportdata.record[48].Total) +
                             Number(jsonObj.xml.reportdata.record[49].Total) +
                             Number(jsonObj.xml.reportdata.record[76].Total) +
-                            Number(jsonObj.xml.reportdata.record[77].Total)
-            });
-        }
-    </script>
+                            Number(jsonObj.xml.reportdata.record[77].Total);
 
-    <script type="text/javascript">
+                    var totalPercent = saEntTotal + roaEntTotal + intEntTotal;
+
+                    var saPercent = ((Number(saTotal) / Number(saEntTotal)) * 100).toFixed(0);
+                    saPercent = "(" + String(saPercent) + "%)";
+                    $('#regsapercent').html(saPercent);
+
+                    var roaPercent = ((Number(roaTotal) / Number(roaEntTotal)) * 100).toFixed(0);
+                    roaPercent = "(" + String(roaPercent) + "%)";
+                    $('#regroapercent').html(roaPercent);
+
+                    var intPercent = ((Number(intTotal) / Number(intEntTotal)) * 100).toFixed(0);
+                    intPercent = "(" + String(intPercent) + "%)";
+                    $('#regintpercent').html(intPercent);
+
+                    var totalSaroaIntPercent = ((Number(regTOTAL) / Number(totalPercent)) * 100).toFixed(0);
+                    intPercent = "(" + String(intPercent) + "%)";
+                    $('#regsaroainttotalpercent').html(totalSaroaIntPercent);
+                })
+            })
+        }
+
         function loadMaleFemale() {
             $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2007&checksum=358936464c8c8e9672756e8a79804b6b'), function (data) {
                 var jsonObj = $.xml2json(data.contents);
