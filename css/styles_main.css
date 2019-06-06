@@ -48,7 +48,7 @@ img {
 body {
 	font-family: 'Arial';
 	font-weight: bold;
-	background-image: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("../images/comrades2019back.jpg");
+	background-image: linear-gradient( rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8) ), url("../images/cm2019.jpg");
 	background-repeat: no-repeat;
 	background-size: cover;
 }

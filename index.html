@@ -43,7 +43,7 @@
                 rewind: true,
                 items: 1,
                 autoplay: true,
-                autoplayTimeout: 16000,
+                autoplayTimeout: 12000,
                 speed: 300,
                 autoplayHoverPause: true,
                 dots: false,
@@ -356,7 +356,7 @@
 
                 $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=32&checksum=f6d766960f0dd698930e0304f1da41eb'), function (data) {
                     var jsonObj = $.xml2json(data.contents);
-                    var saEntTotal = jsonObj.xml.reportdata.record[0].Total;
+                    var saEntTotal = Number(jsonObj.xml.reportdata.record[0].Total);
                     var intEntTotal = Number(jsonObj.xml.reportdata.record[1].Total) +
                             Number(jsonObj.xml.reportdata.record[2].Total) +
                             Number(jsonObj.xml.reportdata.record[4].Total) +
@@ -436,7 +436,7 @@
                             Number(jsonObj.xml.reportdata.record[76].Total) +
                             Number(jsonObj.xml.reportdata.record[77].Total);
 
-                    var totalPercent = saEntTotal + roaEntTotal + intEntTotal;
+                    var totalEntries = saEntTotal + roaEntTotal + intEntTotal;
 
                     var saPercent = ((Number(saTotal) / Number(saEntTotal)) * 100).toFixed(0);
                     saPercent = "(" + String(saPercent) + "%)";
@@ -450,9 +450,9 @@
                     intPercent = "(" + String(intPercent) + "%)";
                     $('#regintpercent').html(intPercent);
 
-                    var totalSaroaIntPercent = ((Number(regTOTAL) / Number(totalPercent)) * 100).toFixed(0);
-                    intPercent = "(" + String(intPercent) + "%)";
-                    $('#regsaroainttotalpercent').html(totalSaroaIntPercent);
+                    var totalSaRoaIntPercent = ((Number(regTOTAL) / Number(totalEntries)) * 100).toFixed(0);
+                    totalSaRoaIntPercent = "(" + String(totalSaRoaIntPercent) + "%)";
+                    $('#regsaroainttotalpercent').html(totalSaRoaIntPercent);
                 })
             })
         }
