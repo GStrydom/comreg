@@ -324,15 +324,22 @@
                 $('#pmb-registered').html(pmbTotal);
                 $('#total-registered').html(regTOTAL);
 
-                $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2010&checksum=ebe1b57fb9a2f6f56e0919488dad9365'), function (data) {
-                    var jsonObj = $.xml2json(data.contents);
+                var totalDurban = 17249;
+                var totalPMB = 2508;
 
-                    var entDbnTotal = jsonObj.xml.reportdata.record[0].computed;
-                    var entPmbTotal = jsonObj.xml.reportdata.record[1].computed;
-                    var entriesTotal = jsonObj.xml.reportdata.record[2].computed;
+                var dbnPercent = ((Number(durbanTotal) / Number(totalDurban)) * 100).toFixed(0);
+                dbnPercent = "(" + String(dbnPercent) + "%)";
+                $('#regdbnpercent').html(dbnPercent);
 
+                var pmbPercent = ((Number(pmbTotal) / Number(totalPMB)) * 100).toFixed(0);
+                pmbPercent = "(" + String(pmbPercent) + "%)";
+                $('#regpmbpercent').html(pmbPercent);
 
-                });
+                var grandTotal = totalDurban + pmbTotal;
+
+                var totalPercent = ((Number(regTOTAL) / Number(grandTotal)) * 100).toFixed(0);
+                totalPercent = "(" + String(totalPercent) + "%)";
+                $('#regdbnpmbtotalpercent').html(pmbPercent);
             });
         }
     </script>
