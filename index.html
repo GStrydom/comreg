@@ -25,6 +25,9 @@
         $(document).ready(function() {
             getTheDate();
             loadDbnPmb();
+            loadSaRoaInt();
+            loadMaleFemale();
+            loadGreenNovice();
         })
     </script>
 
@@ -53,23 +56,22 @@
                     }
                 }
             });
+
+            var dataFuncs = [loadDbnPmb, loadSaRoaInt, loadMaleFemale, loadGreenNovice];
+
+            var counter = 0;
+
             owl.on('changed.owl.carousel', function(event) {
                 getTheDate();
-                switch (event.item.index) {
-                    case 0:
-                        loadDbnPmb();
-                        break;
-                    case  1:
-                        loadSaRoaInt();
-                        break;
-                    case 2:
-                        loadMaleFemale();
-                        break;
-                    case 3:
-                        loadGreenNovice();
+                if (event.item.index === 0) {
+                    dataFuncs[counter]();
+                    if (counter === dataFuncs.length) {
+                        counter = 0;
+                    }
+                    counter += 1;
                 }
-            })
-        })
+            });
+        });
     </script>
 
     <script type="text/javascript">
