@@ -534,7 +534,7 @@
                     }
                     if(jsonObj.xml.reportdata.record[4].CheckInTerminal.startsWith('DBNM')) {
                         durbanTotal += Number(jsonObj.xml.reportdata.record[4].RegistrationCount);
-                    } else if(jsonObj.xml.reportdata.record[4].CheckInTerminal.startsWith('PMB')){
+                    } else if(jsonObj.xml.reportdata.record[4].CheckInTerminal.startsWith('PMBM')){
                         pmbTotal += Number(jsonObj.xml.reportdata.record[4].RegistrationCount)
                     }
                     if(jsonObj.xml.reportdata.record[5].CheckInTerminal.startsWith('DBNM')) {
@@ -665,9 +665,9 @@
                     } else if(jsonObj.xml.reportdata.record[29].CheckInTerminal.startsWith('PMBM')){
                         pmbTotal += Number(jsonObj.xml.reportdata.record[29].RegistrationCount)
                     }
-                    if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('DBN')) {
+                    if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('DBNM')) {
                         durbanTotal += Number(jsonObj.xml.reportdata.record[30].RegistrationCount);
-                    } else if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('PMB')){
+                    } else if(jsonObj.xml.reportdata.record[30].CheckInTerminal.startsWith('PMBM')){
                         pmbTotal += Number(jsonObj.xml.reportdata.record[30].RegistrationCount)
                     }
                     if(jsonObj.xml.reportdata.record[31].CheckInTerminal.startsWith('DBNM')) {
