@@ -2,6 +2,13 @@
   <dictionary name="0004">
     <words>
       <w>autoplay</w>
+      <w>reggreennum</w>
+      <w>reggreenpercent</w>
+      <w>regnovice</w>
+      <w>regnovicepercent</w>
+      <w>regother</w>
+      <w>regotherpercent</w>
+      <w>viewport</w>
     </words>
   </dictionary>
 </component>
