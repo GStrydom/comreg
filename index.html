@@ -133,9 +133,7 @@
 
                 var jsonObj = $.xml2json(data.contents);
 
-                console.log(jsonObj.xml.reportdata);
-
-                for (var i=0; i<40; i++) {
+                for (var i=0; i<42; i++) {
                     if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('DBN')) {
                         durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
                     }
@@ -330,43 +328,12 @@
         }
 
         function loadGreenNovice() {
-            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=2005&checksum=67c4f8fe5f359933f448f378bb9f2f40'), function (data) {
+            $.getJSON('https://api.allorigins.win/get?url=' + encodeURIComponent('https://secure.onreg.com/onreg2/users/reports_public.php?id=4315&list=true&type=xml&reportid=20118&checksum=7e5be12755a24f6bc58ccb9c47beacde'), function (data) {
                 var jsonObj = $.xml2json(data.contents);
 
-                var regGreen = 0
-                var regNovice = 0;
-
-                for (var j=0; j<40; j++) {
-                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('DBNG')) {
-                        regGreen += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
-                    }
-                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('PMBG')) {
-                        regGreen += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
-                    }
-                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('Nov')) {
-                        regNovice += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
-                    }
-                }
-
-                var durbanTotal = 0;
-                var pmbTotal = 0;
-
-                for (var i=0; i<40; i++) {
-                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('DBNM')) {
-                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
-                    }
-                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('Vus')) {
-                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
-                    }
-                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('jar')) {
-                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
-                    }
-                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('PMBM')) {
-                        pmbTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
-                    }
-                }
-
-                var regOther = durbanTotal + pmbTotal;
+                var regGreen = jsonObj.xml.reportdata.record[0].computed;
+                var regNovice = jsonObj.xml.reportdata.record[1].computed;
+                var regOther = jsonObj.xml.reportdata.record[2].computed;
 
                 $('#reggreennum').html(regGreen);
                 $('#regnovice').html(regNovice);
@@ -387,9 +354,7 @@
                     regNovicePercent = "(" + String(regNovicePercent) + "%)";
                     $('#regnovicepercent').html(regNovicePercent);
 
-                    var grandTotal = durbanTotal + pmbTotal;
-
-                    var regOtherPercent = ((Number(grandTotal) / Number(entTotal)) * 100).toFixed(0);
+                    var regOtherPercent = ((Number(regOther) / Number(entOther)) * 100).toFixed(0);
                     regOtherPercent = "(" + String(regOtherPercent) + "%)";
                     $('#regotherpercent').html(regOtherPercent);
                 });
@@ -504,3 +469,39 @@
 </div>
 </body>
 </html>
+
+
+<!--
+var regGreen = 0;
+                var regNovice = 0;
+
+                for (var j=0; j<40; j++) {
+                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('DBNG')) {
+                        regGreen += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
+                    }
+                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('PMBG')) {
+                        regGreen += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
+                    }
+                    if (jsonObj.xml.reportdata.record[j].CheckInTerminal.startsWith('Nov')) {
+                        regNovice += Number(jsonObj.xml.reportdata.record[j].RegistrationCount);
+                    }
+                }
+
+                var durbanTotal = 0;
+                var pmbTotal = 0;
+
+                for (var i=0; i<40; i++) {
+                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('DBNM')) {
+                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
+                    }
+                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('Vus')) {
+                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
+                    }
+                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('jar')) {
+                        durbanTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
+                    }
+                    if (jsonObj.xml.reportdata.record[i].CheckInTerminal.startsWith('PMBM')) {
+                        pmbTotal += Number(jsonObj.xml.reportdata.record[i].RegistrationCount);
+                    }
+                }
+-->
